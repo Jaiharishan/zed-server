@@ -33,7 +33,7 @@ router.post('/register', async(req, res) => {
             password: hash
         })
         await newUser.save()
-        return res.status(200).json({
+        return res.status(201).json({
             msg: "New user added successfully"
         })
     } catch (err) {
@@ -62,7 +62,7 @@ router.post('/login', async(req, res) => {
             const token = jwt.sign({ _id: userDetails._id, userName: userDetails.userName, email: userDetails.email },
                 process.env.TOKEN_SECRET, { expiresIn: '168h' }
             )
-            return res.header('auth_token', token).json({
+            return res.status(200).json({
                 msg: "User logged in successfully",
                 token
             })
