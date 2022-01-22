@@ -12,10 +12,12 @@ router.post('/', upload.single("thumbnail"), async(req, res) => {
             msg: "Fill all fields"
         })
     }
+    const { userName } = await User.findById(userId)
     const newCourse = new Course({
         title,
         description,
         tags,
+        author: userName,
         price: parseFloat(price),
         thumbnail: {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
