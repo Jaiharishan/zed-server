@@ -17,6 +17,9 @@ const courseSchema = new mongoose.Schema({
         ref: 'Content'
     }],
     tags: [{ type: String }],
-    likes: Number
+    likes: {
+        type: Number,
+        default: 0
+    }
 }, { timestamps: true })
 module.exports = mongoose.model('Course', courseSchema)
